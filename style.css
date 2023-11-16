@@ -1,0 +1,16 @@
+html,
+body {
+  height: 100vh;
+  margin: 0;
+}
+
+main {
+  position: relative;
+  overflow: hidden;
+}
+
+canvas {
+  width: 100vmin;
+  height: 75vmin;
+  border: 1px solid black;
+}

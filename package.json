@@ -1,0 +1,19 @@
+{
+  "name": "runningsanta",
+  "version": "1.0.0",
+  "description": "mini game what Santa runs and delivers gifts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hsyeon603@gmail.com",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsyeon603/running-santa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hsyeon603/running-santa/issues"
+  },
+  "homepage": "https://github.com/hsyeon603/running-santa#readme"
+}
