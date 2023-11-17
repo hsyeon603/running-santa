@@ -14,3 +14,7 @@ canvas {
   height: 75vmin;
   border: 1px solid black;
 }
+
+.asset-img {
+  display: none;
+}
