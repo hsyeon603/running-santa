@@ -2,6 +2,7 @@ export default class App {
   static canvas = document.querySelector('canvas');
   static ctx = App.canvas.getContext('2d');
   static dpr = devicePixelRatio > 1 ? 2 : 1;
+  static interval = 1000 / 60;
 
   constructor() {}
 
