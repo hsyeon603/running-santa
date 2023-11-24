@@ -1,5 +1,7 @@
 import Background from './Background.js';
 import Chimney from './Chimney.js';
+import Player from './Player.js';
+
 export default class App {
   static canvas = document.querySelector('canvas');
   static ctx = App.canvas.getContext('2d');
@@ -22,6 +24,7 @@ export default class App {
 
   reset() {
     this.chimneys = [new Chimney({ type: 'BIG' })];
+    this.player = new Player();
   }
 
   init() {
@@ -64,6 +67,9 @@ export default class App {
           this.chimneys.push(newChimney);
         }
       }
+
+      this.player.update();
+      this.player.draw();
 
       then = now - (delta % App.interval);
     };
