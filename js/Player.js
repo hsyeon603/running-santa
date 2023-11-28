@@ -7,15 +7,20 @@ export default class Player {
     this.y = App.height * 0.5;
     this.width = 100;
     this.height = (this.width * 32) / 40;
-
     this.frameX = 7;
     this.counter = 0;
-
     this.vy = -10;
     this.gravity = 0.2;
+
     App.canvas.addEventListener('click', () => {
       this.vy += -3.5;
     });
+  }
+  get coordX() {
+    return this.x;
+  }
+  get coordY() {
+    return this.y;
   }
   update() {
     this.counter += 1;

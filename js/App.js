@@ -1,7 +1,7 @@
 import Background from './Background.js';
 import Chimney from './Chimney.js';
 import Player from './Player.js';
-
+import Giftbox from './Giftbox.js';
 export default class App {
   static canvas = document.querySelector('canvas');
   static ctx = App.canvas.getContext('2d');
@@ -25,6 +25,7 @@ export default class App {
   reset() {
     this.chimneys = [new Chimney({ type: 'BIG' })];
     this.player = new Player();
+    this.giftboxes = [];
   }
 
   init() {
@@ -39,6 +40,13 @@ export default class App {
   render() {
     let now, delta;
     let then = Date.now();
+
+    window.addEventListener('click', () => {
+      const x = this.player.coordX;
+      const y = this.player.coordY;
+      const vx = 10 * Math.cos((Math.PI / 180) * 360);
+      this.giftboxes.push(new Giftbox({ x, y, vx }));
+    });
 
     const frame = () => {
       requestAnimationFrame(frame);
@@ -65,6 +73,18 @@ export default class App {
           this.chimneys[i].generatedNext = true;
           const newChimney = new Chimney({ type: Math.random() > 0.3 ? 'SMALL' : 'BIG' });
           this.chimneys.push(newChimney);
+        }
+      }
+
+      if (this.giftboxes.length) {
+        for (let i = this.giftboxes.length - 1; i >= 0; i--) {
+          this.giftboxes[i].update();
+          this.giftboxes[i].draw();
+
+          if (this.giftboxes[i].isOutSide) {
+            this.giftboxes.splice(i, 1);
+            continue;
+          }
         }
       }
 
