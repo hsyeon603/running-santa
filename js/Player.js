@@ -1,4 +1,5 @@
 import App from './App.js';
+import BoundingBox from './BoundingBox.js';
 
 export default class Player {
   constructor() {
@@ -11,6 +12,8 @@ export default class Player {
     this.counter = 0;
     this.vy = -10;
     this.gravity = 0.2;
+
+    this.boundingBox = new BoundingBox(this.x + 10, this.y + 16, this.width - 20, this.height - 20);
 
     App.canvas.addEventListener('click', () => {
       this.vy += -3.5;
@@ -28,11 +31,9 @@ export default class Player {
       this.frameX = ++this.frameX % 30;
     }
 
-    // this.frameX += 1;
-    // if (this.frameX === 15) this.frameX = 0;
-
     this.vy += this.gravity;
     this.y += this.vy;
+    this.boundingBox.y = this.y + 16;
   }
   draw() {
     App.ctx.drawImage(
@@ -46,5 +47,6 @@ export default class Player {
       this.width,
       this.height
     );
+    this.boundingBox.draw();
   }
 }
