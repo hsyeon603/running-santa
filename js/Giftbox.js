@@ -8,7 +8,7 @@ export default class Gifxbox {
     this.height = 40;
     this.x = config.x + this.width;
     this.y = config.y + this.height;
-    this.vx = config.vx;
+    this.vx = 10 * Math.cos((Math.PI / 180) * 360);
     this.vy = 0;
     this.frameX = 7;
     this.friction = 0.93;

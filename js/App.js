@@ -44,8 +44,7 @@ export default class App {
     window.addEventListener('click', () => {
       const x = this.player.coordX;
       const y = this.player.coordY;
-      const vx = 10 * Math.cos((Math.PI / 180) * 360);
-      this.giftboxes.push(new Giftbox({ x, y, vx }));
+      this.giftboxes.push(new Giftbox({ x, y }));
     });
 
     const frame = () => {
