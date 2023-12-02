@@ -47,6 +47,5 @@ export default class Player {
       this.width,
       this.height
     );
-    this.boundingBox.draw();
   }
 }

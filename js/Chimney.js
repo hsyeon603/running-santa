@@ -57,6 +57,5 @@ export default class Chimney {
       this.width,
       this.height
     );
-    this.boundingBox.draw();
   }
 }

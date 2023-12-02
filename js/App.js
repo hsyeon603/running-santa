@@ -2,6 +2,7 @@ import Background from './Background.js';
 import Chimney from './Chimney.js';
 import Player from './Player.js';
 import Giftbox from './Giftbox.js';
+import Score from './Score.js';
 export default class App {
   static canvas = document.querySelector('canvas');
   static ctx = App.canvas.getContext('2d');
@@ -26,6 +27,7 @@ export default class App {
     this.chimneys = [new Chimney({ type: 'BIG' })];
     this.player = new Player();
     this.giftboxes = [];
+    this.score = new Score();
   }
 
   init() {
@@ -73,6 +75,9 @@ export default class App {
           const newChimney = new Chimney({ type: Math.random() > 0.3 ? 'SMALL' : 'BIG' });
           this.chimneys.push(newChimney);
         }
+        if (this.chimneys[i].isColliding(this.player.boundingBox)) {
+          break;
+        }
       }
 
       if (this.giftboxes.length) {
@@ -84,11 +89,21 @@ export default class App {
             this.giftboxes.splice(i, 1);
             continue;
           }
+
+          for (let j = this.chimneys.length - 1; j >= 0; j--) {
+            if (this.giftboxes[i].isColliding(this.chimneys[j].boundingBox)) {
+              this.giftboxes.splice(i, 1);
+              this.score.giftCount += 1;
+              continue;
+            }
+          }
         }
       }
 
       this.player.update();
       this.player.draw();
+      this.score.update();
+      this.score.draw();
 
       then = now - (delta % App.interval);
     };
