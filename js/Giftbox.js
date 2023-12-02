@@ -1,4 +1,5 @@
 import App from './App.js';
+import BoundingBox from './BoundingBox.js';
 
 export default class Gifxbox {
   constructor(config) {
@@ -11,8 +12,9 @@ export default class Gifxbox {
     this.vy = 0;
     this.frameX = 7;
     this.friction = 0.93;
-
     this.gravity = 2;
+
+    this.boundingBox = new BoundingBox(this.x, this.y, this.width, this.height);
   }
 
   get isOutSide() {
@@ -27,9 +29,12 @@ export default class Gifxbox {
 
     this.x += this.vx;
     this.y += this.vy;
+    this.boundingBox.x = this.x;
+    this.boundingBox.y = this.y;
   }
 
   draw() {
     App.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    this.boundingBox.draw();
   }
 }
