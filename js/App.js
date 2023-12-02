@@ -3,6 +3,8 @@ import Chimney from './Chimney.js';
 import Player from './Player.js';
 import Giftbox from './Giftbox.js';
 import Score from './Score.js';
+import GameHandler from './GameHandler.js';
+
 export default class App {
   static canvas = document.querySelector('canvas');
   static ctx = App.canvas.getContext('2d');
@@ -20,6 +22,7 @@ export default class App {
       new Background({ img: document.querySelector('#bg5-img'), speed: -3 }),
     ];
 
+    this.gameHandler = new GameHandler(this);
     this.reset();
   }
 
@@ -53,7 +56,9 @@ export default class App {
       requestAnimationFrame(frame);
       now = Date.now();
       delta = now - then;
+
       if (delta < App.interval) return;
+      if (this.gameHandler.status !== 'PLAYING') return;
 
       App.ctx.clearRect(0, 0, App.width, App.height);
 
@@ -76,6 +81,7 @@ export default class App {
           this.chimneys.push(newChimney);
         }
         if (this.chimneys[i].isColliding(this.player.boundingBox)) {
+          this.gameHandler.status = 'FINISH';
           break;
         }
       }
@@ -102,6 +108,11 @@ export default class App {
 
       this.player.update();
       this.player.draw();
+
+      if (this.player.y >= App.height || this.player.y + this.player.height <= 0) {
+        this.gameHandler.status = 'FINISH';
+      }
+
       this.score.update();
       this.score.draw();
 

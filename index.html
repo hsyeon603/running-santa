@@ -7,6 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -19,6 +24,17 @@
     <img src="./assets/santa.png" id="player-img" class="asset-img" alt="" />
     <img src="./assets/giftbox.png" id="giftbox-img" class="asset-img" alt="" />
     <main>
+      <section class="ready-screen">
+        <div>
+          <h1 class="title">산타런!</h1>
+        </div>
+        <img src="./assets/play.svg" class="play-img" alt="" />
+      </section>
+      <section class="finish-screen">
+        <div class="distance">0m</div>
+        <div class="gift">0 gift</div>
+        <img src="./assets/replay.svg" class="replay-img" alt="" />
+      </section>
       <canvas></canvas>
     </main>
     <script type="module" src="./index.js"></script>

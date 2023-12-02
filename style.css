@@ -18,3 +18,46 @@ canvas {
 .asset-img {
   display: none;
 }
+
+.ready-screen,
+.finish-screen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  user-select: none;
+}
+
+.ready-screen .title {
+  font-family: 'Jua', sans-serif;
+  font-size: 100px;
+  color: white;
+}
+
+.play-img,
+.replay-img {
+  width: 11vmin;
+  cursor: pointer;
+  transform: scale(0);
+}
+
+.finish-screen {
+  color: #fff;
+  font-family: 'Jua';
+  opacity: 0;
+  pointer-events: none;
+}
+
+.finish-screen > .distance {
+  font-size: 15vmin;
+}
+.finish-screen > .gift {
+  font-size: 8vmin;
+  margin-bottom: 8vmin;
+  color: gold;
+}
