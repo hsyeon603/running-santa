@@ -8,13 +8,24 @@ export default class BoundingBox {
     this.height = height;
     this.color = `rgba(255,0,0,0.3)`;
   }
-  isColliding(target) {
-    return (
-      target.x + target.width >= this.x &&
-      target.x <= this.x + this.width &&
-      target.y + target.height >= this.y &&
-      target.y <= this.y + this.height
-    );
+  isColliding({ type, target }) {
+    // GIFTBOX, CHIMNEY
+    switch (type) {
+      case 'CHIMNEY':
+        return (
+          target.x + target.width >= this.x &&
+          target.x <= this.x + this.width &&
+          target.y + target.height >= this.y &&
+          target.y <= this.y + this.height
+        );
+      case 'GIFTBOX':
+        return (
+          target.x + target.width >= this.x &&
+          target.x <= this.x + this.width &&
+          target.y + 10 >= this.y &&
+          target.y <= this.y + this.height
+        );
+    }
   }
   draw() {
     App.ctx.fillStyle = this.color;

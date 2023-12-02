@@ -39,7 +39,7 @@ export default class Chimney {
     return !this.generatedNext && this.x + this.width < this.gapNextX;
   }
   isColliding(target) {
-    return this.boundingBox.isColliding(target);
+    return this.boundingBox.isColliding({ type: 'CHIMNEY', target });
   }
   update() {
     this.x += this.vx;

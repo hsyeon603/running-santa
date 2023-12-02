@@ -21,6 +21,10 @@ export default class Gifxbox {
     return this.y > App.height;
   }
 
+  isColliding(target) {
+    return this.boundingBox.isColliding({ type: 'GIFTBOX', target });
+  }
+
   update() {
     this.vy += this.gravity;
 
