@@ -2,16 +2,34 @@ html,
 body {
   height: 100vh;
   margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+body * {
+  font-family: 'Jua', sans-serif;
+}
+
+button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
 }
 
 main {
+  width: 100vmin;
+  height: 75vmin;
   position: relative;
   overflow: hidden;
 }
 
 canvas {
-  width: 100vmin;
-  height: 75vmin;
+  width: 100%;
+  height: 100%;
   border: 1px solid black;
 }
 
@@ -20,21 +38,27 @@ canvas {
 }
 
 .ready-screen,
-.finish-screen {
+.finish-screen,
+.guide-screen,
+.mobile-buttons {
   position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
+}
+
+.ready-screen,
+.finish-screen {
+  left: 0;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   user-select: none;
+  z-index: 10;
 }
 
 .ready-screen .title {
-  font-family: 'Jua', sans-serif;
   font-size: 100px;
   color: white;
 }
@@ -60,4 +84,45 @@ canvas {
   font-size: 8vmin;
   margin-bottom: 8vmin;
   color: gold;
+}
+
+.guide-screen,
+.mobile-buttons {
+  display: none;
+  justify-content: space-between;
+}
+
+.guide-screen.is-active,
+.mobile-buttons.is-active {
+  display: flex;
+}
+
+.mobile-buttons {
+  align-items: end;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.mobile-buttons button {
+  width: 10vw;
+  height: 10vw;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  opacity: 0.3;
+  color: black;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.guide-screen {
+}
+
+@media (max-width: 767px) {
+  .ready-screen .title {
+    font-size: 3rem;
+  }
+
+  .mobile-buttons button {
+    font-size: 0.5rem;
+  }
 }

@@ -1,6 +1,6 @@
 import App from './App.js';
 import BoundingBox from './BoundingBox.js';
-
+import GameHandler from './GameHandler.js';
 export default class Player {
   constructor() {
     this.img = document.querySelector('#player-img');
@@ -15,9 +15,16 @@ export default class Player {
 
     this.boundingBox = new BoundingBox(this.x + 10, this.y + 16, this.width - 20, this.height - 20);
 
-    App.canvas.addEventListener('click', () => {
-      this.vy += -3.5;
-    });
+    if (GameHandler.isTouchable) {
+      this.jumpButton = document.querySelector('.jump-button');
+      this.jumpButton.addEventListener('touchend', () => {
+        this.vy += -3.5;
+      });
+    } else {
+      App.canvas.addEventListener('click', () => {
+        this.vy += -3.5;
+      });
+    }
   }
   get coordX() {
     return this.x;

@@ -42,15 +42,29 @@ export default class App {
       background.draw();
     });
   }
+
   render() {
     let now, delta;
     let then = Date.now();
 
-    window.addEventListener('click', () => {
-      const x = this.player.coordX;
-      const y = this.player.coordY;
-      this.giftboxes.push(new Giftbox({ x, y }));
-    });
+    if (GameHandler.isTouchable) {
+      this.mobileButtons = document.querySelector('.mobile-buttons');
+      this.mobileButtons.classList.add('is-active');
+
+      this.tossButton = document.querySelector('.toss-button');
+      this.tossButton.addEventListener('touchend', () => {
+        const x = this.player.coordX;
+        const y = this.player.coordY;
+        this.giftboxes.push(new Giftbox({ x, y }));
+      });
+    } else {
+      window.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        const x = this.player.coordX;
+        const y = this.player.coordY;
+        this.giftboxes.push(new Giftbox({ x, y }));
+      });
+    }
 
     const frame = () => {
       requestAnimationFrame(frame);

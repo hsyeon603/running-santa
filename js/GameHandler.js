@@ -1,4 +1,6 @@
 export default class GameHandler {
+  static isTouchable = navigator.maxTouchPoints >= 1 ? true : false;
+
   constructor(app) {
     this._status = 'READY';
     this.init();
